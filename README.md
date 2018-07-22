@@ -7,8 +7,8 @@ Testing main functionalities of eBay mobile app: Andorid version 5
 - Create test scripts for eBay for other main functions: EbayMain.java (work in progress)
 
 Enviornment: 
-Appium
-Cucumber
-Maven
-Java
+Appium,
+BDD - Cucumber,
+Maven,
+Java,
 Junit
