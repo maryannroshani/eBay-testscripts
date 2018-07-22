@@ -172,26 +172,16 @@ public class EbayMain {
         driver.findElement(By.id("com.ebay.mobile:id/textview_see_all")).click();
         driver.findElement(By.id("com.ebay.mobile:id/text_slot_1")).click();
         driver.findElement(By.id("com.ebay.mobile:id/button_follow")).click();
+        
     }
 
-        @Test
-        public void searchItem () throws Exception {
 
-            driver.findElement(By.id("com.ebay.mobile:id/search_box")).click();
-            driver.findElement(By.id("com.ebay.mobile:id/search_src_text")).sendKeys("Peter Rabbit Book");
 
-            List suggestions = driver.findElements(By.id("com.ebay.mobile:id/text"));
-            ((WebElement)suggestions.get(0)).click();
 
-            /**
-             *
-            //android.widget.TextView[@text="Recent"]
-            */
 
-            driver.findElement(By.id("com.ebay.mobile:id/text_slot_1")).click();
-            driver.findElement(By.xpath("//android.widget.ImageButton[@content-desc=\"Main navigation, open\"]")).click();
-            driver.findElement(By.id("com.ebay.mobile:id/menuitem_home")).click();
+            //driver.findElement(By.id("com.ebay.mobile:id/text_slot_1")).click();
+            //driver.findElement(By.xpath("//android.widget.ImageButton[@content-desc=\"Main navigation, open\"]")).click();
 
-        }
+
 }
 

@@ -5,19 +5,19 @@ Feature: Search function of eBay
 
   @login
   Scenario: Search an item with valid characters
-    And Navigate to me search bar
+    And Navigate to search bar
     When I search an item with valid data
     Then Display search results
     And I click the first search suggestion
 
   @login
   Scenario: Search a recent item from search bar
-    And Navigate to me search bar
+    And Navigate to search bar
     When I click the recent in searches
     Then Display recent search list
 
   @login
   Scenario: Search a saved item from search bar
-    And Navigate to me search bar
+    And Navigate to search bar
     When I click the saved in searches
     Then Display saved search list

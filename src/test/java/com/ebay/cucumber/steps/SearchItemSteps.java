@@ -34,8 +34,8 @@ public class SearchItemSteps extends AbstractSteps {
         Assert.assertTrue(driver.findElement(By.id("com.ebay.mobile:id/home")).isDisplayed());
     }
 
-    @And("Navigate to me search bar")
-    public void navigate_to_me_search_bar() throws Throwable {
+    @And("Navigate to search bar")
+    public void navigate_to_search_bar() throws Throwable {
         driver.findElement(By.id("com.ebay.mobile:id/search_box")).click();
         System.out.println("Running login scenario");
     }
@@ -78,4 +78,5 @@ public class SearchItemSteps extends AbstractSteps {
         Assert.assertTrue(driver.findElement(By.id("android:id/list")).isEnabled());
         System.out.println("Running login scenario");
     }
+
 }
