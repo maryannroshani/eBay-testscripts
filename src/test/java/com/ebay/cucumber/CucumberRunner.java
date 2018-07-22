@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = {"src/test/resources/ebaylogin.feature"}, plugin = {"pretty", "html:target/html"})
+@CucumberOptions(features = {"src/test/resources/itemsearch.feature"}, plugin = {"pretty", "html:target/html"})
 public class CucumberRunner {
 
 

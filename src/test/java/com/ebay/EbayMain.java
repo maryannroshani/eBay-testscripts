@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -48,17 +50,17 @@ public class EbayMain {
         assertTrue(driver.findElement(By.id("com.ebay.mobile:id/logo")).isDisplayed());
     }
 
-    @BeforeClass
-    public static void signIn() {
+   @Before
+    public void signIn() {
         driver.findElement(By.id("com.ebay.mobile:id/button_sign_in")).click();
         driver.findElement(By.id("com.ebay.mobile:id/edit_text_username")).sendKeys(" nexttriptester1@gmail.com");
-        driver.findElement(By.id("com.ebay.mobile:id/edit_text_password")).sendKeys("Babi1234");
+        driver.findElement(By.id("com.ebay.mobile:id/et_temp")).sendKeys("Babi1234");
         driver.findElement(By.id("com.ebay.mobile:id/button_sign_in")).click();
-        driver.findElement(By.id("com.ebay.mobile:id/button_google_deny")).click();
+
     }
 
     @Test
-    public void browseCategories() {
+    public void selectCategories() {
 
         driver.findElement(By.id("com.ebay.mobile:id/home")).click();
 
@@ -85,7 +87,7 @@ public class EbayMain {
     }
 
     @Test
-    public void countCategories() {
+    public void displayCategories() {
         Set<String> allElementsText = new HashSet<String>();
 
         driver.findElement(By.id("com.ebay.mobile:id/home")).click();
@@ -153,18 +155,43 @@ public class EbayMain {
     }
 
     @Test
-    public void searchItem(){
-        driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.view.View/android.widget.LinearLayout/android.view.View/android.widget.LinearLayout/android.widget.TextView")).sendKeys("Peter Rabbit Book");
-        driver.findElement(By.id("com.ebay.mobile:id/text")).click();
-        driver.findElement(By.id("com.ebay.mobile:id/text_slot_1")).click();
+    public void saveCategories() {
 
-        driver.findElement(By.xpath("//android.widget.ImageButton[@content-desc=\"Main navigation, open\"]")).click();
-        driver.findElement(By.id("com.ebay.mobile:id/menuitem_home")).click();
-        driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.LinearLayout/android.view.View/android.widget.LinearLayout/android.view.View/android.widget.LinearLayout/android.widget.TextView")).click();
-        driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.support.v7.app.ActionBar.Tab[1]")).click();
-        driver.findElement(By.id("com.ebay.mobile:id/text_recent_entry")).click();
+        driver.findElement(By.id("com.ebay.mobile:id/home")).click();
+
+        String scrollViewContainer_finder = "new UiSelector().resourceIdMatches(\"com.ebay.mobile:id/design_navigation_view\")";
+        String neededElement_finder = "new UiSelector().resourceId(\"com.ebay.mobile:id/menuitem_settings\")";
+
+
+        driver.findElementByAndroidUIAutomator("new UiScrollable(" + scrollViewContainer_finder + ")" +
+                ".scrollIntoView(" + neededElement_finder + ")");
+        driver.findElement(By.id("com.ebay.mobile:id/menuitem_categories")).click();
+
+        driver.findElement(By.id("com.ebay.mobile:id/textview_category")).click();
+        driver.findElement(By.id("com.ebay.mobile:id/textview_category")).click();
+        driver.findElement(By.id("com.ebay.mobile:id/textview_see_all")).click();
         driver.findElement(By.id("com.ebay.mobile:id/text_slot_1")).click();
+        driver.findElement(By.id("com.ebay.mobile:id/button_follow")).click();
     }
-}
 
+        @Test
+        public void searchItem () throws Exception {
+
+            driver.findElement(By.id("com.ebay.mobile:id/search_box")).click();
+            driver.findElement(By.id("com.ebay.mobile:id/search_src_text")).sendKeys("Peter Rabbit Book");
+
+            List suggestions = driver.findElements(By.id("com.ebay.mobile:id/text"));
+            ((WebElement)suggestions.get(0)).click();
+
+            /**
+             *
+            //android.widget.TextView[@text="Recent"]
+            */
+
+            driver.findElement(By.id("com.ebay.mobile:id/text_slot_1")).click();
+            driver.findElement(By.xpath("//android.widget.ImageButton[@content-desc=\"Main navigation, open\"]")).click();
+            driver.findElement(By.id("com.ebay.mobile:id/menuitem_home")).click();
+
+        }
+}
 
