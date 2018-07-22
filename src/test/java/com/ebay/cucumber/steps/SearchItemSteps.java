@@ -7,8 +7,10 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import java.net.MalformedURLException;
+import java.util.List;
 
 public class SearchItemSteps extends AbstractSteps {
 
@@ -36,6 +38,22 @@ public class SearchItemSteps extends AbstractSteps {
     public void navigate_to_me_search_bar() throws Throwable {
         driver.findElement(By.id("com.ebay.mobile:id/search_box")).click();
         System.out.println("Running login scenario");
+    }
+
+    @When("I search an item with valid data")
+    public void i_search_an_item_with_valid_data()throws Throwable {
+        driver.findElement(By.id("com.ebay.mobile:id/search_src_text")).sendKeys("Peter Rabbit Book");
+    }
+
+    @Then("Display search results")
+    public void display_search_results()throws Throwable {
+        Assert.assertTrue(driver.findElement(By.id("com.ebay.mobile:id/suggestionList")).isDisplayed());
+    }
+
+    @And("I click the first search suggestion")
+    public void i_click_the_first_search_suggestion()throws Throwable {
+        List suggestions = driver.findElements(By.id("com.ebay.mobile:id/text"));
+        ((WebElement)suggestions.get(0)).click();
     }
 
     @When("I click the recent in searches")
