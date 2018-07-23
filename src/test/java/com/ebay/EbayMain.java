@@ -172,9 +172,10 @@ public class EbayMain {
         driver.findElement(By.id("com.ebay.mobile:id/textview_see_all")).click();
         driver.findElement(By.id("com.ebay.mobile:id/text_slot_1")).click();
         driver.findElement(By.id("com.ebay.mobile:id/button_follow")).click();
-        
-    }
 
+
+
+    }
 
 
 
